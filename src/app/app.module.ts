@@ -13,11 +13,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { NoteListComponent } from './note-list/note-list.component';
+import { ThemeListComponent } from './theme-list/theme-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent
+    NavComponent,
+    NoteListComponent,
+    ThemeListComponent
   ],
   imports: [
     BrowserModule,
