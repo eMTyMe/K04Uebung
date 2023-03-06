@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DbService } from '../shared/dbservice.service';
+import { Theme } from '../shared/theme';
 
 @Component({
   selector: 'uv-theme-list',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ThemeListComponent implements OnInit {
 
-  constructor() { }
+  themes!: Theme[];
+
+  constructor(private dbs: DbService) { }
 
   ngOnInit(): void {
+    this.dbs.getThemesByDescription()
+    .then(themes => this.themes = themes)
+    .catch(err => console.log(err));
   }
 
 }

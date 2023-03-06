@@ -1,1 +1,10 @@
-<p>theme-list works!</p>
+<div class="themes-container">
+  <div>
+    <mat-list *ngIf="themes">
+      <mat-list-item *ngFor="let theme of themes">{{theme.description }}</mat-list-item>
+    </mat-list>
+  </div>
+  <button mat-fab color="primary" class="button-position">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
