@@ -1,0 +1,12 @@
+<div class="dialog-container">
+  <h1>Themeneingabe</h1>
+  <form>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input type="text" matInput [formControl]="descriptionControl">
+      <mat-error *ngIf="descriptionControl.hasError('required')">
+        Es <strong>muss</strong> eine Beschreibung eingegeben werden
+      </mat-error>
+    </mat-form-field>
+  </form>
+</div>

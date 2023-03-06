@@ -15,13 +15,18 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { NoteListComponent } from './note-list/note-list.component';
 import { ThemeListComponent } from './theme-list/theme-list.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import {MatInputModule} from '@angular/material/input';
+import {DialogComponent} from './theme-list/theme-list.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     NoteListComponent,
-    ThemeListComponent
+    ThemeListComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +43,10 @@ import { ThemeListComponent } from './theme-list/theme-list.component';
       // Register the ServiceWorker as soon as the app is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    })
+    }),
+    MatDialogModule,
+    MatInputModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

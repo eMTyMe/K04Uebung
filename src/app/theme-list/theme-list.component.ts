@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { DbService } from '../shared/dbservice.service';
 import { Theme } from '../shared/theme';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'uv-theme-list',
@@ -11,7 +13,7 @@ export class ThemeListComponent implements OnInit {
 
   themes!: Theme[];
 
-  constructor(private dbs: DbService) { }
+  constructor(private dbs: DbService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.dbs.getThemesByDescription()
@@ -19,4 +21,18 @@ export class ThemeListComponent implements OnInit {
     .catch(err => console.log(err));
   }
 
+  openThemeDialog(theme: Theme) {
+    /* this.dialog.open(); */
+  }
+
+}
+
+@Component({
+  selector: 'uv-theme-dialog',
+  templateUrl: './theme-dialog.component.html'
+})
+export class DialogComponent{
+  constructor(@Inject(MAT_DIALOG_DATA) public themeDescr: string) {}
+
+  descriptionControl = new FormControl('', Validators.required);
 }

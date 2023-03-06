@@ -1,7 +1,7 @@
-<div class="themes-container">
+<div>
   <div>
     <mat-list *ngIf="themes">
-      <mat-list-item *ngFor="let theme of themes">{{theme.description }}</mat-list-item>
+      <mat-list-item *ngFor="let theme of themes" style="cursor:pointer" onclick="openThemeDialog(theme)">{{theme.description }}</mat-list-item>
     </mat-list>
   </div>
   <button mat-fab color="primary" class="button-position">
