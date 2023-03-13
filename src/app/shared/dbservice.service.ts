@@ -5,6 +5,7 @@ import * as moment from 'moment';
 import { Note } from './note';
 import { Theme } from './theme';
 import { User } from './user';
+import { Observable, from } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class DbService extends Dexie {
@@ -90,5 +91,14 @@ export class DbService extends Dexie {
     note.creationDate = moment().valueOf();
     note.modificationDate = 0;
     return this.notes.add(note);
+  }
+
+  checkThemeExists(description: string): Observable<Theme | undefined> {
+    return from(
+      this.themes
+        .where('description')
+        .equals(description)
+        .first()
+    );
   }
 }

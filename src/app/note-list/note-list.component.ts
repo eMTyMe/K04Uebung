@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'uv-note-list',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NoteListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route: ActivatedRoute,) { }
 
   ngOnInit(): void {
   }

@@ -1,12 +1,26 @@
-<div class="dialog-container">
-  <h1>Themeneingabe</h1>
-  <form>
-    <mat-form-field>
-      <mat-label>Email</mat-label>
-      <input type="text" matInput [formControl]="descriptionControl">
-      <mat-error *ngIf="descriptionControl.hasError('required')">
-        Es <strong>muss</strong> eine Beschreibung eingegeben werden
-      </mat-error>
-    </mat-form-field>
-  </form>
+<div>
+  <h1 mat-dialog-title>Themeneingabe</h1>
+  <mat-dialog-content style="overflow: visible">
+    <form>
+      <mat-form-field>
+        <mat-label>Themenbeschreibung</mat-label>
+        <input type="text" matInput [formControl]="descriptionControl">
+        <mat-icon matSuffix>
+          <mat-spinner *ngIf="descriptionControl.pending; else not_pending" diameter="20"></mat-spinner>
+          <ng-template #not_pending>search</ng-template>
+        </mat-icon>
+        <mat-error *ngIf="descriptionControl.hasError('required')">
+          Es <strong>muss</strong> eine Beschreibung eingegeben werden
+        </mat-error>
+        <mat-error *ngIf="descriptionControl.hasError('descrExists')">
+          Es exisiter bereits ein Thema mit dieser Beschreibung
+        </mat-error>
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions style="margin-top: 15px;">
+    <button mat-raised-button (click)="closeDialog(descriptionControl.value)">{{ogText == '' ? 'Hinzufügen' : 'Ändern'}}</button>
+    <button mat-raised-button mat-dialog-close>Zurück</button>
+    <button mat-raised-button [disabled]="ogText == '' ? true : false" mat-dialog-close="del:true"><mat-icon>delete</mat-icon></button>
+  </mat-dialog-actions>
 </div>

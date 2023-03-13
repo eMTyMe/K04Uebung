@@ -1,10 +1,10 @@
 <div>
   <div>
     <mat-list *ngIf="themes">
-      <mat-list-item *ngFor="let theme of themes" style="cursor:pointer" onclick="openThemeDialog(theme)">{{theme.description }}</mat-list-item>
+      <mat-list-item *ngFor="let theme of themes" style="cursor:pointer" (click)="openThemeDialog(theme)">{{theme.description }}</mat-list-item>
     </mat-list>
   </div>
-  <button mat-fab color="primary" class="button-position">
+  <button mat-fab color="primary" class="button-position" (click)="openThemeDialog(getNewTheme())">
     <mat-icon>add</mat-icon>
   </button>
 </div>

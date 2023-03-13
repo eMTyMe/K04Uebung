@@ -4,8 +4,8 @@ import { NoteListComponent } from './note-list/note-list.component';
 import { ThemeListComponent } from './theme-list/theme-list.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/notes', pathMatch: 'full'},
-  {path: 'notes', component: NoteListComponent},
+  {path: '', redirectTo: '/notes/title', pathMatch: 'full'},
+  {path: 'notes/:sort', component: NoteListComponent},
   {path: 'themes', component: ThemeListComponent},
 ];
 

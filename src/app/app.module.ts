@@ -19,6 +19,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input';
 import {DialogComponent} from './theme-list/theme-list.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     MatDialogModule,
     MatInputModule,
     ReactiveFormsModule,
+    MatProgressSpinnerModule,
+    MatTabsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
