@@ -1,12 +1,12 @@
 <!-- Form Container -->
-<div *ngIf="note && noteForm && themes" class="form-container">
+<div *ngIf="note && noteForm && themes" class="form-container space-above">
   <!-- Form Content -->
   <div>
     <form class="" [formGroup]="noteForm">
       <!-- Form INPUT Title -->
       <mat-form-field class="space-below form-field-wrapper">
-        <mat-label>Titel</mat-label>
-        <input type="text" matInput formControlName="title">
+        <mat-label class="big-font">Titel</mat-label>
+        <input type="text" matInput formControlName="title" class="bigger-font">
         <mat-error *ngIf="noteForm.get('title')?.hasError('required')">
           Es muss eine Titel eingegeben werden!
         </mat-error>
@@ -24,24 +24,32 @@
             Es muss ein Thema ausgewählt oder ein neues erstellt werden!
           </mat-error>
         </mat-form-field>
-        <!-- <button mat-mini-fab color="primary" class="button-position" (click)="openThemeDialog(getNewTheme())">
+        <button mat-mini-fab color="primary" class="button-position" (click)="openThemeDialog(getNewTheme())">
           <mat-icon>add</mat-icon>
-        </button> -->
+        </button>
       </div>
       <!-- Form dates -->
       <div class="dates-wrapper">
         <p>Erstellt: {{note.creationDate ? (note.creationDate | date:'dd/MM/yy hh:mm:ss') : 'Nicht definiert'}}</p>
-        <p>Erstellt: {{note.modificationDate ? (note.modificationDate | date:'dd/MM/yy hh:mm:ss') : 'Nicht definiert'}}</p>
+        <p>Geändert: {{note.modificationDate ? (note.modificationDate | date:'dd/MM/yy hh:mm:ss') : 'Nicht definiert'}}</p>
       </div>
       <!-- Form INPUT text -->
-      <div>
-
+      <div class="space-above">
+        <mat-form-field class="space-below form-field-wrapper">
+          <mat-label>Text</mat-label>
+          <textarea type="text" matInput formControlName="text" class="text-input-height"></textarea>
+          <mat-error *ngIf="noteForm.get('text')?.hasError('required')">
+            Es muss ein Text eingegeben werden!
+          </mat-error>
+        </mat-form-field>
       </div>
     </form>
   </div>
   <mat-divider></mat-divider>
   <!-- Form Actions -->
-  <div>
-
+  <div class="actions-wrapper">
+    <button mat-raised-button (click)="updateAddNote()">{{id == 'new' ? 'Hinzufügen' : 'Ändern'}}</button>
+    <button mat-raised-button (click)="routeToList()">Zurück</button>
+    <button mat-raised-button (click)="routeToList()">Löschen</button>
   </div>
 </div>

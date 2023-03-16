@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject} from '@angular/core';
 import { DbService } from '../shared/dbservice.service';
 import { Theme } from '../shared/theme';
 import {
@@ -28,7 +28,7 @@ export class ThemeListComponent implements OnInit {
     if (newTheme) theme = Theme.empty();
     const dialogRef = this.dialog.open(DialogComponent, {
       data: { descr: theme?.description },
-      height: '25%'
+      height: '235px'
     });
 
     dialogRef.afterClosed().subscribe((descr) => {
@@ -69,7 +69,7 @@ export class ThemeListComponent implements OnInit {
   selector: 'uv-theme-dialog',
   templateUrl: './theme-dialog.component.html',
 })
-export class DialogComponent implements OnInit {
+export class DialogComponent implements OnInit{
   descriptionControl!: FormControl;
   ogText!: string;
 

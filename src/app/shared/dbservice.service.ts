@@ -119,4 +119,9 @@ export class DbService extends Dexie {
         .first()
     );
   }
+
+  async updateNote(note: Note) {
+    note.modificationDate = moment().valueOf();
+    this.notes.update(note.id, note);
+  }
 }

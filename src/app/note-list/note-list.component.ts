@@ -21,6 +21,6 @@ export class NoteListComponent implements OnInit {
   }
 
   redirectToForm(id: string){
-    this.router.navigate(['/notes/form/', id])
+    this.router.navigate(['/notes/form/'+id])
   }
 }

@@ -22,6 +22,5 @@
     <button mat-raised-button (click)="closeDialog(descriptionControl.value)" [disabled]="descriptionControl.hasError('required') || descriptionControl.hasError('descrExists')">
       {{ogText == '' ? 'Hinzufügen' : 'Ändern'}}</button>
     <button mat-raised-button mat-dialog-close>Zurück</button>
-    <button mat-raised-button [disabled]="ogText == '' ? true : false" mat-dialog-close="del:true"><mat-icon>delete</mat-icon></button>
   </mat-dialog-actions>
 </div>

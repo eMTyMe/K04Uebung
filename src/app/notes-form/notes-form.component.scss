@@ -1,6 +1,7 @@
 .form-container{
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .dates-wrapper {
@@ -13,7 +14,30 @@
   margin-bottom: 20px;
 }
 
-/* .form-field-wrapper{
-  min-width: 200px;
-  max-width: 600px;
-} */
+.space-above {
+  margin-top: 20px;
+}
+
+.form-field-wrapper{
+  min-width: 360px;
+}
+
+.bigger-font {
+  font-size: 25px;
+}
+
+.big-font {
+  font-size: 20px;
+}
+
+.text-input-height {
+  height: 200px;
+
+}
+
+.actions-wrapper{
+  width: 375px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+}
