@@ -1,5 +1,7 @@
+import { DbService } from './../shared/dbservice.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Note } from '../shared/note';
 
 @Component({
   selector: 'uv-note-list',
@@ -8,9 +10,17 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class NoteListComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute,) { }
+  notes!: Note[];
+
+  constructor(private route: ActivatedRoute, private dbs: DbService, private router: Router) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe( params => {
+      this.dbs.getNotesBySort(params.sortOrder).then(notes => this.notes = notes);
+    });
   }
 
+  redirectToForm(id: string){
+    this.router.navigate(['/notes/form/', id])
+  }
 }

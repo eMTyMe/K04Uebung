@@ -21,6 +21,10 @@ import {DialogComponent} from './theme-list/theme-list.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatTabsModule} from '@angular/material/tabs';
+import { NotesnavbarComponent } from './notesnavbar/notesnavbar.component';
+import {MatCardModule} from '@angular/material/card';
+import { NotesFormComponent } from './notes-form/notes-form.component';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -28,7 +32,9 @@ import {MatTabsModule} from '@angular/material/tabs';
     NavComponent,
     NoteListComponent,
     ThemeListComponent,
-    DialogComponent
+    DialogComponent,
+    NotesnavbarComponent,
+    NotesFormComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +57,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     ReactiveFormsModule,
     MatProgressSpinnerModule,
     MatTabsModule,
+    MatCardModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

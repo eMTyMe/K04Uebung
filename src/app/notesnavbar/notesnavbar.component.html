@@ -1,0 +1,26 @@
+<div *ngIf="true then content"></div>
+
+<ng-template #content>
+  <nav mat-tab-nav-bar mat-stretch-tabs="true">
+    <a mat-tab-link
+      routerLink="/notes/list/title"
+      routerLinkActive #listTab="routerLinkActive"
+      [active]="listTab.isActive">
+      Titel
+    </a>
+    <a mat-tab-link
+      routerLink="/notes/list/theme"
+      routerLinkActive #artikelTab="routerLinkActive"
+      [active]="artikelTab.isActive">
+      Thema
+    </a>
+    <a mat-tab-link
+      routerLink="/notes/list/date"
+      routerLinkActive #deleteTab="routerLinkActive"
+      [active]="deleteTab.isActive">
+      Änderungsdatum
+    </a>
+  </nav>
+</ng-template>
+
+<router-outlet></router-outlet>

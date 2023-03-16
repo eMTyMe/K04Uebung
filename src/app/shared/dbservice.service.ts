@@ -62,6 +62,24 @@ export class DbService extends Dexie {
       .first();
     return theme ? theme : Promise.reject('Theme not found');
   }
+
+  async getNotesBySort(sortOrder: string){
+    switch(sortOrder){
+      case 'theme':
+        return this.notes.orderBy('[theme.description+title]').toArray();
+      case 'date':
+        return this.notes.orderBy('[modificationDate+creationDate]').toArray();
+      case 'title':
+      default:
+        return this.notes.orderBy('title').toArray();
+    }
+  }
+
+  async getNoteByID(id: string){
+    const note = await this.notes.where('id').equals(id).first();
+    return note ? note : Promise.reject('Note not found');
+  }
+
   async getNotesByTheme() {
     return this.notes.orderBy('[theme.description+title]').reverse().toArray();
   }

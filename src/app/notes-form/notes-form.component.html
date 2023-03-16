@@ -1,0 +1,47 @@
+<!-- Form Container -->
+<div *ngIf="note && noteForm && themes" class="form-container">
+  <!-- Form Content -->
+  <div>
+    <form class="" [formGroup]="noteForm">
+      <!-- Form INPUT Title -->
+      <mat-form-field class="space-below form-field-wrapper">
+        <mat-label>Titel</mat-label>
+        <input type="text" matInput formControlName="title">
+        <mat-error *ngIf="noteForm.get('title')?.hasError('required')">
+          Es muss eine Titel eingegeben werden!
+        </mat-error>
+      </mat-form-field>
+      <!-- Form SELECT Theme + New -->
+      <div>
+        <mat-form-field class="space-below form-field-wrapper">
+          <mat-label>Thema</mat-label>
+          <mat-select formControlName="theme">
+            <mat-option *ngFor="let theme of themes" [value]="theme.description">
+              {{theme.description}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="noteForm.get('theme')?.hasError('required')">
+            Es muss ein Thema ausgewählt oder ein neues erstellt werden!
+          </mat-error>
+        </mat-form-field>
+        <!-- <button mat-mini-fab color="primary" class="button-position" (click)="openThemeDialog(getNewTheme())">
+          <mat-icon>add</mat-icon>
+        </button> -->
+      </div>
+      <!-- Form dates -->
+      <div class="dates-wrapper">
+        <p>Erstellt: {{note.creationDate ? (note.creationDate | date:'dd/MM/yy hh:mm:ss') : 'Nicht definiert'}}</p>
+        <p>Erstellt: {{note.modificationDate ? (note.modificationDate | date:'dd/MM/yy hh:mm:ss') : 'Nicht definiert'}}</p>
+      </div>
+      <!-- Form INPUT text -->
+      <div>
+
+      </div>
+    </form>
+  </div>
+  <mat-divider></mat-divider>
+  <!-- Form Actions -->
+  <div>
+
+  </div>
+</div>

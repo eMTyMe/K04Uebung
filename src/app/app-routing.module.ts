@@ -1,12 +1,19 @@
+import { NotesFormComponent } from './notes-form/notes-form.component';
+import { NotesnavbarComponent } from './notesnavbar/notesnavbar.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NoteListComponent } from './note-list/note-list.component';
 import { ThemeListComponent } from './theme-list/theme-list.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/notes/title', pathMatch: 'full'},
-  {path: 'notes/:sort', component: NoteListComponent},
+  {path: '', redirectTo: '/notes/list/title', pathMatch: 'full'},
   {path: 'themes', component: ThemeListComponent},
+  {path: 'notes', component: NotesnavbarComponent,
+    children: [
+      {path: 'form/:id', component: NotesFormComponent},
+      {path: 'list/:sortOrder', component: NoteListComponent},
+      {path: '', redirectTo: '/notes/list/title', pathMatch: 'full'}
+    ]},
 ];
 
 @NgModule({

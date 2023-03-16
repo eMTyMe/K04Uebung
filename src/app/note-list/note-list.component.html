@@ -1,26 +1,26 @@
-<div *ngIf="true then content"></div>
+<div *ngIf="notes else loading">
+  <div *ngFor="let note of notes">
+    <mat-card class="card-wrapper" (click)="redirectToForm(note.id)">
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title>{{note.title+' ('+note.theme?.description+')'}}</mat-card-title>
+          <mat-card-subtitle>Von: {{note.user?.username}}</mat-card-subtitle>
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content>
+        <div>Erstellt: {{note.creationDate | date:'dd/MM/yy hh:mm:ss'}} Geändert:
+          {{note.modificationDate ? (note.modificationDate | date:'dd/MM/yy hh:mm:ss')  : 'Nicht definiert'}}</div>
+        <div>{{note.text}}</div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <button mat-fab color="primary" class="button-position" (click)="redirectToForm('new')">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
 
-<ng-template #content>
-  <nav mat-tab-nav-bar mat-stretch-tabs="true">
-    <a mat-tab-link
-      routerLink="/notes/title"
-      routerLinkActive #listTab="routerLinkActive"
-      [active]="listTab.isActive">
-      Titel
-    </a>
-    <a mat-tab-link
-      routerLink="/notes/theme"
-      routerLinkActive #artikelTab="routerLinkActive"
-      [active]="artikelTab.isActive">
-      Thema
-    </a>
-    <a mat-tab-link
-      routerLink="/notes/modDate"
-      routerLinkActive #deleteTab="routerLinkActive"
-      [active]="deleteTab.isActive">
-      Änderungsdatum
-    </a>
-  </nav>
+<ng-template #loading>
+  <div>
+    <p>Loading list....</p>
+  </div>
 </ng-template>
-
-<router-outlet></router-outlet>

@@ -1,0 +1,19 @@
+.form-container{
+  display: flex;
+  justify-content: center;
+}
+
+.dates-wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 10px;
+}
+
+.space-below {
+  margin-bottom: 20px;
+}
+
+/* .form-field-wrapper{
+  min-width: 200px;
+  max-width: 600px;
+} */
