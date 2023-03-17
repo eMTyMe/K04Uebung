@@ -31,6 +31,8 @@ export class NotesFormComponent implements OnInit {
     this.getThemes();
 
     this.route.params.subscribe(params => {
+      if(!params.id)
+        this.router.navigate(['/notes/form/new']);
       this.id = params.id;
       if(this.id == 'new'){
         this.note = Note.empty();
@@ -73,6 +75,7 @@ export class NotesFormComponent implements OnInit {
   async updateAddNote(){
     Object.assign(this.note, this.noteForm.value);
     this.note.theme = await this.dbs.getThemeByDescription(this.noteForm.get('theme')!.value);
+    console.log(this.note);
     if(this.id == 'new')
       this.dbs.addNote(this.note);
     else
@@ -99,6 +102,15 @@ export class NotesFormComponent implements OnInit {
   getNewTheme() {
     return Theme.empty();
   }
+
+  deleteNote() {
+    if(this.id != 'new' && this.id != null && this.id != undefined) {
+      this.dbs.getNoteByID(this.id)
+        .then(note => this.dbs.deleteNote(note)
+          .then(/* SnackBar: 'Success' */ ))
+        .catch(err => console.error(err));
+    }
+  }
 }
 
 @Component({
@@ -116,8 +128,8 @@ export class ThemeDialogComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
-    this.descriptionControl = new FormControl(this.data.descr, Validators.required, ThemeValidator.descrExists(this.dbs));
     this.ogText = this.data.descr;
+    this.descriptionControl = new FormControl(this.data.descr, Validators.required, ThemeValidator.descrExists(this.dbs));
   }
 
   closeDialog(descr: string) {

@@ -48,8 +48,9 @@
   <mat-divider></mat-divider>
   <!-- Form Actions -->
   <div class="actions-wrapper">
-    <button mat-raised-button (click)="updateAddNote()">{{id == 'new' ? 'Hinzufügen' : 'Ändern'}}</button>
+    <button mat-raised-button (click)="updateAddNote()" [disabled]="noteForm.get('title')?.hasError('required') ||
+    noteForm.get('theme')?.hasError('required') || noteForm.get('text')?.hasError('required')">{{id == 'new' ? 'Hinzufügen' : 'Ändern'}}</button>
     <button mat-raised-button (click)="routeToList()">Zurück</button>
-    <button mat-raised-button (click)="routeToList()">Löschen</button>
+    <button mat-raised-button (click)="deleteNote()">Löschen</button>
   </div>
 </div>

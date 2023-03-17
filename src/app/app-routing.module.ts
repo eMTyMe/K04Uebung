@@ -10,6 +10,7 @@ const routes: Routes = [
   {path: 'themes', component: ThemeListComponent},
   {path: 'notes', component: NotesnavbarComponent,
     children: [
+      {path: 'form', component: NotesFormComponent},
       {path: 'form/:id', component: NotesFormComponent},
       {path: 'list/:sortOrder', component: NoteListComponent},
       {path: '', redirectTo: '/notes/list/title', pathMatch: 'full'}
