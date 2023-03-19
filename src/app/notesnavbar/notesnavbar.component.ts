@@ -8,8 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotesnavbarComponent implements OnInit {
 
+  sortOrder!: string;
+
   constructor(private route: ActivatedRoute, private router: Router) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      if(!params.sortOrder)
+        this.router.navigate(['/notes/list/title'])
+      this.sortOrder = params.sortOrder;
+    })
+  }
 
 }

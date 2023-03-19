@@ -71,9 +71,11 @@ export class NotesFormComponent implements OnInit {
       else {
         /* Show Err in Snackbar, give option to create new or go back to NotesList */
         this.err = true;
-        const snackBarRef = this._snackBar.open('Keine Notiz mit ID "'+this.id+'" gefunden\nWollen Sie eine neue Notiz anlegen?', 'Neue Notiz',
-          {panelClass: ["snack-bar-red", "snack-bar"], duration: 5000});
-        snackBarRef.onAction().subscribe(() => this.router.navigate(['/notes/form/new']));
+        if(this.id != undefined) {
+          const snackBarRef = this._snackBar.open('Keine Notiz mit ID "'+this.id+'" gefunden\nWollen Sie eine neue Notiz anlegen?', 'Neue Notiz',
+            {panelClass: ["snack-bar-red", "snack-bar"], duration: 5000});
+          snackBarRef.onAction().subscribe(() => this.router.navigate(['/notes/form/new']));
+        }
       }
     });
 

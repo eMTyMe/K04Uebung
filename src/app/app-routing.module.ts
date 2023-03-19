@@ -12,6 +12,7 @@ const routes: Routes = [
     children: [
       {path: 'form', component: NotesFormComponent},
       {path: 'form/:id', component: NotesFormComponent},
+      {path: 'list', component: NoteListComponent},
       {path: 'list/:sortOrder', component: NoteListComponent},
       {path: '', redirectTo: '/notes/list/title', pathMatch: 'full'}
     ]},
