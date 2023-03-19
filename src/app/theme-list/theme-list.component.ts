@@ -8,6 +8,7 @@ import {
 } from '@angular/material/dialog';
 import { FormControl, Validators } from '@angular/forms';
 import { ThemeValidator } from './theme-validator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'uv-theme-list',
@@ -17,7 +18,7 @@ import { ThemeValidator } from './theme-validator';
 export class ThemeListComponent implements OnInit {
   themes!: Theme[];
 
-  constructor(private dbs: DbService, private dialog: MatDialog) { }
+  constructor(private dbs: DbService, private dialog: MatDialog, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.getThemes();
@@ -35,7 +36,14 @@ export class ThemeListComponent implements OnInit {
       if (descr != undefined && descr != '' && descr != 'del:true') {
         theme.description = descr;
         if (newTheme) {
-          this.dbs.addTheme(theme).then((_) => this.getThemes());
+          this.dbs.addTheme(theme).then((_) => this.getThemes())
+          .then(_ => {
+            this._snackBar.open('Thema erfolgreich hinzugefügt', 'Ok', {panelClass: ["snack-bar-green", "snack-bar"], duration: 4000});
+          })
+          .catch(err => {
+            console.log(err);
+            this._snackBar.open('Fehler beim eintragen des Themas in die Datenbank', 'Ok', {panelClass: ["snack-bar-red", "snack-bar"], duration: 4000});
+          });
         } else {
           this.dbs.updateTheme(theme).then((_) => this.getThemes());
         }
@@ -43,8 +51,14 @@ export class ThemeListComponent implements OnInit {
         if (!newTheme)
           this.dbs
             .deleteTheme(theme)
-            .then((_) => this.getThemes())
-            .catch((err) => console.log(err));
+            .then((_) => {
+              this._snackBar.open('Thema erfolgreich gelöscht', 'Ok', {panelClass: ["snack-bar-green", "snack-bar"], duration: 4000});
+              this.getThemes();
+            })
+            .catch((err) => {
+              this._snackBar.open('Löschen des Themas in der Datenbank fehlgeschlagen. Gibt es zum Thema noch eine Notiz?', 'Ok', {panelClass: ["snack-bar-red", "snack-bar"], duration: 4000});
+              console.log(err);
+            });
       }
     });
   }
@@ -59,15 +73,12 @@ export class ThemeListComponent implements OnInit {
   getNewTheme() {
     return Theme.empty();
   }
-
-  deleteTheme(theme: Theme) {
-    this.dbs.deleteTheme(theme);
-  }
 }
 
 @Component({
   selector: 'uv-theme-dialog',
   templateUrl: './theme-dialog.component.html',
+  styleUrls: ['./theme-list.component.scss'],
 })
 export class DialogComponent implements OnInit{
   descriptionControl!: FormControl;

@@ -25,7 +25,8 @@ import { NotesnavbarComponent } from './notesnavbar/notesnavbar.component';
 import {MatCardModule} from '@angular/material/card';
 import { NotesFormComponent } from './notes-form/notes-form.component';
 import {MatSelectModule} from '@angular/material/select';
-import {ThemeDialogComponent} from './notes-form/notes-form.component'
+import {ThemeDialogComponent} from './notes-form/notes-form.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import {ThemeDialogComponent} from './notes-form/notes-form.component'
     DialogComponent,
     ThemeDialogComponent,
     NotesnavbarComponent,
-    NotesFormComponent
+    NotesFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +62,7 @@ import {ThemeDialogComponent} from './notes-form/notes-form.component'
     MatTabsModule,
     MatCardModule,
     MatSelectModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,3 +5,35 @@
   margin-right: 10px;
   margin-bottom: 10px;
 }
+
+button {
+  transform: scale(1);
+  transition: transform 0.2s;
+}
+
+button:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s;
+}
+
+::ng-deep .snack-bar-red {
+  background-color: rgba(219, 8, 8, 0.822);
+  color: black;
+}
+
+::ng-deep .snack-bar-green {
+  background-color: rgba(48, 216, 26, 0.822);
+  color: black;
+}
+
+::ng-deep .snack-bar button {
+  color: black;
+  border: 1px solid black;
+  transform: scale(1);
+  transition: all .2s;
+}
+
+::ng-deep .snack-bar button:hover {
+  transform:  scale(1.1);
+  transition: transform 0.3s;
+}

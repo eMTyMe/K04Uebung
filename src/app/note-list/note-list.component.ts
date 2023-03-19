@@ -10,17 +10,19 @@ import { Note } from '../shared/note';
 })
 export class NoteListComponent implements OnInit {
 
+  sortOrder!: string;
   notes!: Note[];
 
   constructor(private route: ActivatedRoute, private dbs: DbService, private router: Router) { }
 
   ngOnInit(): void {
     this.route.params.subscribe( params => {
+      this.sortOrder = params.sortOrder;
       this.dbs.getNotesBySort(params.sortOrder).then(notes => this.notes = notes);
     });
   }
 
   redirectToForm(id: string){
-    this.router.navigate(['/notes/form/'+id])
+    this.router.navigate(['/notes/form/'+id, {sO: this.sortOrder}]);
   }
 }

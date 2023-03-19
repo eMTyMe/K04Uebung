@@ -51,6 +51,9 @@
     <button mat-raised-button (click)="updateAddNote()" [disabled]="noteForm.get('title')?.hasError('required') ||
     noteForm.get('theme')?.hasError('required') || noteForm.get('text')?.hasError('required')">{{id == 'new' ? 'Hinzufügen' : 'Ändern'}}</button>
     <button mat-raised-button (click)="routeToList()">Zurück</button>
-    <button mat-raised-button (click)="deleteNote()">Löschen</button>
+    <button mat-raised-button (click)="deleteNote()" [disabled]="id == 'new'">Löschen</button>
   </div>
+</div>
+<div *ngIf="err">
+  <button mat-raised-button color="primary" class="space-above space-left" (click)="routeToList()"><mat-icon>arrow_back</mat-icon> Zur Notizen-Liste</button>
 </div>
